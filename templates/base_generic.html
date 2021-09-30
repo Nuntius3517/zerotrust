@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{%block title%}<title>Zero trust</title>{% endblock %}
+</head>
+
+
+<body>
+	{% block sidebar %}
+	<ul class="sidebar-nav">
+		<li><a>Home</a></li>
+		<li><a href="127.0.0.1:8080">Jenkins</a></li>
+		<!--Add New DevOps tools  here-->
+	</ul>
+
+	{% endblock %}
+	{% block content %}{% endblock %}
+
+</body>
+
+
+{% if user.is_authenticated %}
+	<li>User: {{user.get_username}}</li>
+	<li><a href="{% url 'logout'%}?next={{request.path}}">logout</a></li>
+{%else%}
+	<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+{%endif%}
+
+</html>
